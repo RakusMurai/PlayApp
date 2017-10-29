@@ -1,4 +1,4 @@
-package controllers.form;
+    package controllers.forms;
 
 /**
  * SampleForm

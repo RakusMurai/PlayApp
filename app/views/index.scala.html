@@ -1,5 +1,5 @@
-@(msg:String)(form:Form) @main("Welcome to Play") {
+@(msg:String,form:Form[forms.SampleForm]) @main("Welcome to Play") {
 <h1>Hello</h1>
 <p>@msg</p>
-@helper.form(action=routes.Application.send()){ @(helper.inputText(form("message") ))
+@helper.form(action=routes.Application.send()){ @(helper.inputText(form("") ))
 <input type="submit"> } }
