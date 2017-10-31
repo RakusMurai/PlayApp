@@ -4,6 +4,8 @@ package controllers.forms;
  * SampleForm
  */
 public class EventForm {
+    /** イベント名. */
     public String name;
-    public String message;
+    /** イベント内容 */
+    public String article;
 }

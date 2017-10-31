@@ -1,11 +1,11 @@
 package models;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 
 import io.ebean.Finder;
 import io.ebean.Model;
@@ -14,20 +14,21 @@ import io.ebean.annotation.NotNull;
 import io.ebean.annotation.UpdatedTimestamp;
 
 /**
- * Article
+ * Participant
  */
 @Entity
-public class Event extends Model {
+public class Participant extends Model {
     @Id
     public Long id;
+    /** 参加者名. */
     @NotNull
-    /** イベント名. */
     public String name;
+    /** メッセージ. */
     @NotNull
-    /** 内容. */
-    public String article;
-    @OneToMany
-    public List<Participant> participants;
+    public String message;
+    /** 紐づくイベント. */
+    @ManyToOne(cascade = CascadeType.ALL)    
+    public Event event;
     /** 作成日. */
     @CreatedTimestamp
     public LocalDateTime createdAt;
@@ -35,14 +36,9 @@ public class Event extends Model {
     @UpdatedTimestamp
     public LocalDateTime updatedAt;
     /** DBアクセス. */
-    public static Finder<Long, Event> finder = new Finder<>(Event.class);
-
+    public static Finder<Long, Participant> finder = new Finder<>(Participant.class);
     /** 内容表示 */
     public String toString() {
-        return "Event [id=" + id + ", name=" + name + ", message=" + article + "]";
+        return "Participant [id=" + id + ", name=" + name + ", message=" + message + ", event=" + event + "]";
     }
-
-    // public static Event findById(String input) {
-    //     return Event.finder.byId(Long.parseLong(input));
-    // }
 }

@@ -13,7 +13,7 @@ import controllers.forms.EventForm;
  * コントローラ
  */
 public class Application extends Controller {
-    private Form<controllers.forms.EventForm> eventForm;
+    private Form<EventForm> eventForm;
 
     @Inject
     private EventService eventService;

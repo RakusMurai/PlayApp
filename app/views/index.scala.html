@@ -3,8 +3,8 @@
 <p>
     @for(event
     <- events ){ @event.name <br>
-        @event.message
+        @event.article
         <br> } </p>
 @helper.form(action=routes.Application.send()){ @helper.inputText(form("name"))
-<br>@helper.inputText(form("message"))
+<br>@helper.inputText(form("article"))
 <input type="submit">}}

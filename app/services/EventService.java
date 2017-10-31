@@ -2,7 +2,7 @@ package services;
 
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import controllers.forms.EventForm;
 import models.Event;
@@ -10,22 +10,16 @@ import models.Event;
 /**
  * EventService
  */
+@Singleton
 public class EventService {
-    public Event event;
-
-    @Inject
-    public EventService(Event event) {
-        this.event = event;
-    }
-
     public List<Event> findAll() {
-        return event.finder.all();
+        return Event.finder.all();
     }
 
     public Event makeEventFromForm(EventForm form) {
         Event event = new Event();
         event.name = form.name;
-        event.message = form.message;
+        event.article = form.article;
         return event;
     }
 }
