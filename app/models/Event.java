@@ -11,7 +11,7 @@ import io.ebean.annotation.NotNull;
  * Article
  */
 @Entity
-public class Article extends Model {
+public class Event extends Model {
     @Id
     public Integer id;
     @NotNull
@@ -19,7 +19,7 @@ public class Article extends Model {
     @NotNull
     public String message;
     
-    public Finder<Long, Article> finder = new Finder<>(Article.class);
+    public Finder<Long, Event> finder = new Finder<>(Event.class);
 
     public String toString() {
         return "Parent [id=" + id + ", name=" + name + ", message=" + message + "]";

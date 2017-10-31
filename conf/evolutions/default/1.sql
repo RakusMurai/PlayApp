@@ -3,15 +3,15 @@
 
 # --- !Ups
 
-create table article (
+create table event (
   id                            serial not null,
   name                          varchar(255) not null,
   message                       varchar(255) not null,
-  constraint pk_article primary key (id)
+  constraint pk_event primary key (id)
 );
 
 
 # --- !Downs
 
-drop table if exists article cascade;
+drop table if exists event cascade;
 

@@ -1,9 +1,9 @@
-    package controllers.forms;
+package controllers.forms;
 
 /**
  * SampleForm
  */
-public class ArticleForm {
+public class EventForm {
     public String name;
     public String message;
 }

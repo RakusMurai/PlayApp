@@ -2,8 +2,8 @@
 <h1>Hello</h1>
 <p>
     @for(article
-    <- articles){ article.name <br>
-        article.message
+    <- articles){ @article.name <br>
+        @article.message
         <br> } </p>
 @helper.form(action=routes.Application.send()){ @helper.inputText(form("name"))
 <br>@helper.inputText(form("message"))
