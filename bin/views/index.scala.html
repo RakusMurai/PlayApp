@@ -1,9 +1,9 @@
-@(articles:List[Article],form:Form[forms.ArticleForm]) @main("Welcome to Play") {
-<h1>Hello</h1>
+@(events:List[Event],form:Form[forms.EventForm]) @main("Welcome to Play") {
+<h1>企画一覧</h1>
 <p>
-    @for(article
-    <- articles){ @article.name <br>
-        @article.message
+    @for(event
+    <- events ){ @event.name <br>
+        @event.message
         <br> } </p>
 @helper.form(action=routes.Application.send()){ @helper.inputText(form("name"))
 <br>@helper.inputText(form("message"))

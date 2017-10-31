@@ -1,23 +1,22 @@
 package controllers;
 
 import play.mvc.*;
-
+import services.EventService;
 import views.html.*;
 import play.data.*;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
 import controllers.forms.EventForm;
-import models.Event;
 
 /**
  * コントローラ
  */
 public class Application extends Controller {
     private Form<controllers.forms.EventForm> eventForm;
-    private final Event EVENT_MODEL = new Event();
+
+    @Inject
+    private EventService eventService;
 
     @Inject
     public Application(FormFactory formFactory) {
@@ -25,21 +24,11 @@ public class Application extends Controller {
     }
 
     public Result index() {
-        List<Event> events = EVENT_MODEL.finder.all();
-        return ok(index.render(events, eventForm));
+        return ok(index.render(eventService.findAll(), eventForm));
     }
 
     public Result send() {
-        Event event = makeEvent(eventForm.bindFromRequest().get());
-        event.insert();
+        eventService.makeEventFromForm(eventForm.bindFromRequest().get()).insert();
         return redirect("/");
     }
-
-    private Event makeEvent(EventForm form) {
-        Event event = new Event();
-        event.name = form.name;
-        event.message = form.message;
-        return event;
-    }
-
 }
