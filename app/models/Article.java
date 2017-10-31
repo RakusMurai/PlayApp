@@ -19,7 +19,7 @@ public class Article extends Model {
     @NotNull
     public String message;
     
-    public static Finder<Long, Article> finder = new Finder<>(Article.class);
+    public Finder<Long, Article> finder = new Finder<>(Article.class);
 
     public String toString() {
         return "Parent [id=" + id + ", name=" + name + ", message=" + message + "]";

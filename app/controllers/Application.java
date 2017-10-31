@@ -18,6 +18,7 @@ import models.Article;
  */
 public class Application extends Controller {
     private Form<ArticleForm> articleForm;
+    private final Article ARTICLE_MODEL = new Article();
 
     @Inject
     public Application(FormFactory formFactory) {
@@ -25,13 +26,17 @@ public class Application extends Controller {
     }
 
     public Result index() {
-        List<Article> articles = new ArrayList<>();
-        return ok(index.render("何か書いて", articleForm));
+        List<Article> articles = ARTICLE_MODEL.finder.all();
+        return ok(index.render(articles, articleForm));
     }
 
     public Result send() {
         ArticleForm reqestForm = articleForm.bindFromRequest().get();
-        return ok(index.render(reqestForm.name, articleForm.fill(reqestForm)));
+        Article article = new Article();
+        article.name = reqestForm.name;
+        article.message = reqestForm.message;
+        article.insert();
+        return redirect("/");
     }
 
 }

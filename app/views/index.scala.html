@@ -1,6 +1,10 @@
-@(msg:String,form:Form[forms.ArticleForm]) @main("Welcome to Play") {
+@(articles:List[Article],form:Form[forms.ArticleForm]) @main("Welcome to Play") {
 <h1>Hello</h1>
-<p>@msg</p>
+<p>
+    @for(article
+    <- articles){ @article.name <br>
+        @article.message
+        <br> } </p>
 @helper.form(action=routes.Application.send()){ @helper.inputText(form("name"))
 <br>@helper.inputText(form("message"))
 <input type="submit">}}
