@@ -1,41 +1,43 @@
 package controllers;
 
 import play.mvc.*;
-import services.EventService;
 import views.html.*;
 import play.data.*;
 
 import javax.inject.Inject;
 
 import controllers.forms.EventForm;
+import controllers.forms.ParticipantForm;
+import models.Event;
 import models.Participant;
 
-/**
- * コントローラ
- */
+/** アプリケーションコントローラー. */
 public class Application extends Controller {
+    /** フォームクラスの変数準備 */
     private Form<EventForm> eventForm;
-    private Form<Participant> perticipantForm;
+    private Form<ParticipantForm> perticipantForm;
 
-    @Inject
-    private EventService eventService;
-
+    /** フォームクラスにフォームを代入. */
     @Inject
     public Application(FormFactory formFactory) {
         this.eventForm = formFactory.form(EventForm.class);
-        this.perticipantForm = formFactory.form(Participant.class);
+        this.perticipantForm = formFactory.form(ParticipantForm.class);
     }
 
+    /** トップページの表示. */
     public Result index() {
-        return ok(index.render(eventService.findAll(), eventForm));
+        return ok(index.render(Event.finder.all(), eventForm));
     }
 
-    public Result send() {
-        eventService.makeEventFromForm(eventForm.bindFromRequest().get()).insert();
+    /** イベントの登録. */
+    public Result event() {
+        new Event(eventForm.bindFromRequest().get()).insert();
         return redirect("/");
     }
 
-    // public Result participant() {
-
-    // }
+    /** 参加者の登録. */
+    public Result participant() {
+        new Participant(perticipantForm.bindFromRequest().get()).insert();
+        return redirect("/");
+    }
 }

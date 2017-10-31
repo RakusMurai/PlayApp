@@ -1,8 +1,6 @@
 package controllers.forms;
 
-/**
- * SampleForm
- */
+/** イベントを受け取る. */
 public class EventForm {
     /** イベント名. */
     public String name;

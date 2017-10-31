@@ -7,17 +7,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import controllers.forms.EventForm;
 import io.ebean.Finder;
 import io.ebean.Model;
 import io.ebean.annotation.CreatedTimestamp;
 import io.ebean.annotation.NotNull;
 import io.ebean.annotation.UpdatedTimestamp;
 
-/**
- * Article
- */
+/** イベントを表す. */
 @Entity
 public class Event extends Model {
+    /** id. */
     @Id
     public Long id;
     @NotNull
@@ -42,7 +42,13 @@ public class Event extends Model {
         return "Event [id=" + id + ", name=" + name + ", message=" + article + "]";
     }
 
-    // public static Event findById(String input) {
-    //     return Event.finder.byId(Long.parseLong(input));
-    // }
+    /** デフォルトコンストラクタ. */
+    public Event() {
+    };
+
+    /** フォームからイベントを作成. */
+    public Event(EventForm form) {
+        this.name = form.name;
+        this.article = form.article;
+    };
 }
